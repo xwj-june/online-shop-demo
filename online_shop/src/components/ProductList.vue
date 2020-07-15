@@ -5,26 +5,37 @@
         <button>Search</button>
     </div>
     <div class="product-list">
-        <ul>
-            <li class="product">
-                <img src="https://d3fa68hw0m2vcc.cloudfront.net/3e1/233270737.jpeg" alt="image">
-                <p class="product-price">$1020.0</p>
-                <p class="product-name">laptop</p>
-            </li>
-            <li class="product">
-                <img src="https://d3fa68hw0m2vcc.cloudfront.net/3e1/233270737.jpeg" alt="image">
-                <p class="product-price">$1020.0</p>
-                <p class="product-name">laptop</p>
-            </li>
-            <li class="product">
-                <img src="https://d3fa68hw0m2vcc.cloudfront.net/3e1/233270737.jpeg" alt="image">
-                <p class="product-price">$1020.0</p>
-                <p class="product-name">laptop</p>
-            </li>
+        <ul>            
+            <li class="product" v-for="product in productList" :key="product.id">
+                <img :src="product.productImageUrl" alt="image">
+                <p class="product-price">${{product.price}}</p>
+                <p class="product-name">{{product.productName}}</p>
+            </li>    
         </ul>
     </div>
   </div>
 </template>
+<script>
+export default {
+    data(){
+        return{
+            productList: [],
+        }
+    },
+    mounted(){
+
+    },
+    methods:{
+        getProductList:function(){
+            var thisVue = this;
+            this.$http.get('/api/Products/GetProducts/').then(function(res){
+                thisVue.productList = res.data;
+            });
+        }
+    },
+}
+</script>
+
 <style scoped>
 .product-search{
     margin-bottom: 100px;
