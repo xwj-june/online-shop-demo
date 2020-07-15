@@ -26,5 +26,22 @@ namespace online_shop_api.Common
 
 			}
 		}
+		public static int ExecuteNonQuery(string cmdText)
+		{
+			using (SqlConnection con = new SqlConnection(Constr))
+			{
+				con.Open();
+				//cmdTetxt - sql comands
+				SqlCommand cmd = new SqlCommand(cmdText, con);
+				int rows = cmd.ExecuteNonQuery();
+				if (rows <= 0)
+				{
+					throw new Exception("Database execute incorrectly");
+				}
+				return rows;
+			}
+		}
+
+		
 	}
 }

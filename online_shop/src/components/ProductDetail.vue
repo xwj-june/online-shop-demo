@@ -11,7 +11,7 @@
                 <span @click="plusNumber()">+</span>
             </p>
             <p>
-                <button>Add to Cart</button>
+                <button @click="AddCart()">Add to Cart</button>
             </p>
         </div>
         <div class="product-detail">
@@ -29,10 +29,11 @@ export default {
     },
     mounted(){
         var pid = this.$route.query.pid;        
+        this.getProductById(pid);
     },
     methods:{
 
-        getProductById(){
+        getProductById(pid){
             var thisVue = this;
             this.$http
                 .get('https://localhost:44356/api/Product/GetProductById/?id='+pid)
@@ -58,6 +59,20 @@ export default {
 
             //Below: apply v-model and watch
             var newCount = event.target.value; 
+        },
+        AddCart(){
+            var thisVue = this;
+            this.$http
+                .get('https://localhost:44356/api/Product/AddCart/?productId='+
+                    this.product.id + 
+                    '&count=' + 
+                    this.count+
+                    " ")
+                .then(function(res){
+                    if (res.data > 0){
+                        thisVue.$router.push("/AddSuccess");
+                    }
+            });
         }
     },
     //Below: apply v-model and watch

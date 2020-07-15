@@ -17,8 +17,20 @@ namespace online_shop_api.Controllers
         public List<Products> GetProducts()
         {
             List<Products> productList = Products.GetProductList();
-            return productList;
-            
+            return productList;            
+        }
+
+        public Products GetProductById(int id)
+        {
+            List<Products> productList = Products.GetProductList();
+            return productList.Find(m => m.Id == id);
+        }
+
+        public int AddCart(int productId, int count)
+        {
+            int rows = ShoppingCarts.AddCart(productId, count);
+            return rows;
+
         }
     }
 }
