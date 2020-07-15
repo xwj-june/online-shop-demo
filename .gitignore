@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/online_shop_api/.vs/online_shop_api
+/online_shop_api/online_shop_api/bin/Debug/netcoreapp3.0
+/online_shop_api/online_shop_api/obj

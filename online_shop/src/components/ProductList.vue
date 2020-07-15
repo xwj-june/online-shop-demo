@@ -23,12 +23,12 @@ export default {
         }
     },
     mounted(){
-
+        this.getProductList();
     },
     methods:{
         getProductList:function(){
             var thisVue = this;
-            this.$http.get('/api/Products/GetProducts/').then(function(res){
+            this.$http.get('https://localhost:44356/api/Product/GetProducts').then(function(res){
                 thisVue.productList = res.data;
             });
         }
