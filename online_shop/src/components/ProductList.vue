@@ -7,9 +7,11 @@
     <div class="product-list">
         <ul>            
             <li class="product" v-for="product in productList" :key="product.id">
-                <img :src="product.productImageUrl" alt="image">
-                <p class="product-price">${{product.price}}</p>
-                <p class="product-name">{{product.productName}}</p>
+                <router-link :to="'/ProductDetail?pid='+product.id">
+                    <img :src="product.productImageUrl" alt="image">
+                    <p class="product-price">${{product.price}}</p>
+                    <p class="product-name">{{product.productName}}</p>
+                </router-link>
             </li>    
         </ul>
     </div>
